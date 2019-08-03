@@ -1,4 +1,5 @@
 import gi
+from typing import Callable
 
 gi.require_version("PackageKitGlib", "1.0")
 from gi.repository import PackageKitGlib
@@ -17,6 +18,9 @@ class PackageKitService:
     def callback_ready(self):
         pass
 
+    def list_installed_packages(self):
+        pass
+
     def install_package(self, name: str) -> None:
         # TODO Requires package_name;version;arch;distro as a string to install
         try:
@@ -27,8 +31,17 @@ class PackageKitService:
     def remove_package(self, name: str):
         pass
 
-    def get_installed_packages(self):
-        pass
+    def get_installed_packages(
+        self, callback_ready: Callable, callback_progress=None
+    ) -> None:
+        self.packagekit_client.get_packages_async(
+            filter=PackageKitGlib.FilterEnum.NONE,
+            cancellable=None,
+            callback_progress=callback_progress,
+            progress_user_data=None,
+            callback_ready=callback_ready,
+            ready_user_data=None,
+        )
 
     def _create_dict_from_array(self, package_array):
         """_create_dict_from_array
@@ -57,7 +70,7 @@ class PackageKitService:
             name=package.get_name(),
             platform=package.get_arch(),
             source=package.get_data(),
-            package_type="apt", #TODO Should in a variable ( find package manager )
+            package_type="apt",  # TODO Should in a variable ( find package manager )
             version=package.get_version(),
             is_installed=package.get_data(),
         )
