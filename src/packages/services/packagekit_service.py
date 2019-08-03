@@ -56,12 +56,10 @@ class PackageKitService:
             id_package=package.get_id(),
             name=package.get_name(),
             platform=package.get_arch(),
-            summary=package.get_summary(),
             source=package.get_data(),
-            package_type="apt",
+            package_type="apt", #TODO Should in a variable ( find package manager )
             version=package.get_version(),
             is_installed=package.get_data(),
-            license=package.props.license,
         )
 
     def _extract_information_from_strings(self, package):
