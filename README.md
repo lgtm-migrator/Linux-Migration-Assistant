@@ -15,6 +15,16 @@ We aim to bring some of the good stuff we've seen out there to facilitate migrat
 * pydbus
 * PackageKit
 
+## Quick start
+
+```bash
+  ## On Ubuntu
+  sudo apt install python3-venv
+  python3 -m venv .venv
+  source .venv/bin/activate
+  pip3 install -r requirements/prod.txt # Use dev.txt if you want to contribute
+```
+
 ## Supported Distribution
 
 * Ubuntu 18.04 +
