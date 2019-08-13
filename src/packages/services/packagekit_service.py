@@ -1,4 +1,4 @@
-from typing import Callable
+from typing import Callable, Generator
 
 from packages.formatter.package_formatter import PackageFormatter
 
@@ -20,7 +20,13 @@ class PackageKitService:
 
     def list_installed_packages(
         self, progress_callback: Callable, progress_user_data: object
-    ):
+    ) -> Generator:
+        """
+
+        :param progress_callback: function
+        :param progress_user_data:  tuple
+        :return: generator
+        """
         return (
             p
             for p in self.packagekit_client.get_packages(
@@ -39,21 +45,6 @@ class PackageKitService:
         except Exception as ex:
             print(ex)
 
-    def remove_package(self, name: str):
-        pass
-
-    def get_installed_packages(
-        self, callback_ready: Callable, callback_progress=None
-    ) -> None:
-        self.packagekit_client.get_packages_async(
-            filter=PackageKitGlib.FilterEnum.NONE,
-            cancellable=None,
-            callback_progress=callback_progress,
-            progress_user_data=None,
-            callback_ready=callback_ready,
-            ready_user_data=None,
-        )
-
     def _create_dict_from_array(self, package_array):
         """_create_dict_from_array
 
@@ -67,7 +58,8 @@ class PackageKitService:
             packages.append(self._extract_package_to_dict(package=package))
         return packages
 
-    def _extract_package_to_dict(self, package):
+    @staticmethod
+    def _extract_package_to_dict(package):
         """_extract_package_to_dict
 
         Use the formatter to return a dictionnary
