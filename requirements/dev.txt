@@ -1,3 +1,4 @@
 -r common.txt
 black
 pytlint
+PyGObject==3.33.1
