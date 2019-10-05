@@ -1,4 +1,5 @@
 -r common.txt
 black
-pytlint
-PyGObject==3.33.1
+pylint
+pytest
+PyGObject==3.34.0
