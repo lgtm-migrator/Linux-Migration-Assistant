@@ -18,11 +18,12 @@ class SnapService:
         """
         return self.snap.get_snaps_sync(flags=0, names=None)
 
-    def list_one_package(name: str) -> Snapd.Snap:
+    def list_one_package(self, name) -> Snapd.Snap:
         """
           Get information of a single installed snap. If the snap does not exist an error occurs
         :return: Snapd.Snap
         """
+        return self.snap.get_snap_sync(name, None)
 
     def install_package_name(self, flags, name, channel, revision, progress_callback, pgd, clble) -> bool:
         """
@@ -31,9 +32,9 @@ class SnapService:
         """
         return self.snap.install2_sync(flags, name, channel, revision, progress_callback, pgd, clble)
 
-    def delete_package(self, name: str):
+    def delete_package(self, name, progress_callback, progress_callback_data, cancellable) -> bool:
         """
          Delete package passed as args
         :param package: package to delete
         """
-        self.snap_client.remove_sync(name)
+        return self.snap.remove_sync(name, progress_callback, progress_callback_data, cancellable)
