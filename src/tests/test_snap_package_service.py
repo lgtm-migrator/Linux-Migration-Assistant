@@ -1,9 +1,11 @@
 from src.packages.services.snap_service import SnapService
+import logging
 import gi
 
 gi.require_version("Snapd", "1")
 from gi.repository import Snapd
 
+logging.basicConfig(filename='app.log', filemode='w', format='%(process)d - %(asctime)s - %(levelname)s - %(message)s')
 snap_list_toplaywith = ["spotify", "krop"]
 
 
@@ -14,14 +16,11 @@ class TestSnapPackageService:
         installed_packages = self.SNAP_CLIENT.list_installed_packages()
         assert isinstance(installed_packages, list)
         for package in installed_packages:
-            # print(dir(package))
-            print(package.get_name())
             assert package.get_install_date() is not None
             assert isinstance(package, Snapd.Snap)
 
     def test_install_package(self):
         for idx, snap in enumerate(snap_list_toplaywith):
-            print("snap is " + snap)
             name = str(snap)
             try:
                 check_snap = self.SNAP_CLIENT.list_one_package(name)
@@ -35,10 +34,9 @@ class TestSnapPackageService:
                     new_installed_snap = self.SNAP_CLIENT.install_package_name(flags, check_snap, channel, revision,
                                                                                progress_callback, None, None)
                     assert new_installed_snap is True
-                    print("snap installations and tests went ok")
+                    logging.info("snap installations and tests went ok")
                 else:
-                    print("Other type of exception...needs to be checked")
-                    return False
+                    logging.error("Other type of exception: %s...needs to be checked", e)
 
     def test_remove_package(self):
         for idx, snap in enumerate(snap_list_toplaywith):
@@ -54,7 +52,7 @@ class TestSnapPackageService:
                                                                progress_callback_data,
                                                                cancellable)
                 assert removed_snap is True
-                print("snap deletion and tests went ok")
+                logging.info("snap deletion and tests went ok")
             else:
-                print("Test failed package is not installed before the test starts ")
-                return False
+                logging.error("Test failed package is not installed before the test starts ")
+                raise Exception("Test failed because the required packages are not present in this machine")
