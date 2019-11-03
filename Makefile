@@ -7,5 +7,5 @@ setup_dev:
 	make build
 	python3 -m venv	.venv && source .venv/bin/activate && pip install vext vext.gi && pip install -r requirements/dev.txt
 
-test:
+run_unittests:
 	cd src && python3 -m pytest -v
