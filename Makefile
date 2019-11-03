@@ -8,4 +8,4 @@ setup_dev:
 	python3 -m venv	.venv && source .venv/bin/activate && pip install vext vext.gi && pip install -r requirements/dev.txt
 
 run_unittests:
-	cd src && python3 -m pytest -v
+	sudo su -c "python3 -m pip install -r requirements/test.txt && cd src && coverage run -m pytest -v && coverage report"
