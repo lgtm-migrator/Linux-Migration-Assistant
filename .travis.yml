@@ -30,4 +30,4 @@ matrix:
       dist: bionic
 install:
   - make setup_dev
-script: make run_unittests
+script: make run_unittests_travis
