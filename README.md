@@ -1,4 +1,5 @@
 # Linux-Migration-Assistant - First stages
+[![Build Status](https://travis-ci.com/open-tuxnologies/Linux-Migration-Assistant.svg?branch=develop)](https://travis-ci.com/open-tuxnologies/Linux-Migration-Assistant)
 
 We aim to bring some of the good stuff we've seen out there to facilitate migration from a computer to another! Or from a Distribution to an another!
 
