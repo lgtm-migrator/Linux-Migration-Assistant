@@ -12,3 +12,6 @@ run_unittests:
 
 run_unittests_travis:
 	sudo su -c "cd src && python3 -m pytest -v"
+
+build_containers:
+	docker build -t ubuntu_tests -f docker/Dockerfile.ubuntu.tests .
