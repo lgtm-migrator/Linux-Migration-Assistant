@@ -23,6 +23,7 @@ addons:
       - python3-pytest
       - python3-venv
       - python3-pip
+      - python3-distro
 matrix:
   fast_finish: true
   include:
