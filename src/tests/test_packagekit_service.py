@@ -1,10 +1,12 @@
-from time import sleep
 from unittest import TestCase
+import pytest
 
+from tests.common.utils import has_packagekit_support
 from packages.services.packagekit_service import PackageKitService
 
 
 class TestPackagekitService(TestCase):
+    @pytest.mark.skipif(not has_packagekit_support(), reason="Fedora and Ubuntu are the only distro supported")
     def test_list_packages(self):
         def callback_progress(_, __, ___):
             pass
