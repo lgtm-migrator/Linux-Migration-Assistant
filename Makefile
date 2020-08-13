@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 build:
-	sudo apt install -y python3-pip gir1.2-snapd-1 packagekit libgirepository1.0-dev python3-venv python3-cairo-dev libcairo2-dev python3-dev
+	sudo apt install -y python3-pip gir1.2-snapd-1 packagekit gir1.2-packagekitglib-1.0 libgirepository1.0-dev python3-venv python3-cairo-dev libcairo2-dev python3-dev
 
 setup_dev:
 	make build
