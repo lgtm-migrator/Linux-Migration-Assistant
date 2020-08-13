@@ -11,8 +11,8 @@ build_setup_test:
 	make build
 	pip3 install -r requirements/test.txt
 
+codestyle:
+	flake8
+
 run_unittests:
 	sudo su -c "python3 -m pip install -r requirements/test.txt && cd src && coverage run -m pytest -v && coverage report"
-
-run_unittests_travis:
-	sudo su -c "cd src && python3 -m pytest -v"
