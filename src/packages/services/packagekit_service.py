@@ -1,7 +1,5 @@
 from typing import Callable, Generator
 
-from packages.formatter.package_formatter import PackageFormatter
-
 import gi
 
 gi.require_version("PackageKitGlib", "1.0")
