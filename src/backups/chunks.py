@@ -27,7 +27,7 @@ class Chunk:
         try:
             return self._chunk_signature[compute_adler32(chunk)][compute_md5(chunk)]
         except KeyError:
-            logger.info(f'Chunk not found')
+            logger.info('Chunk not found')
             return None
 
     def __getitem__(self, index_signature: Signature) -> int:
@@ -35,5 +35,3 @@ class Chunk:
 
     def __len__(self):
         return len(self._chunks)
-
-
