@@ -15,6 +15,7 @@ class LocalBackup:
         """
         Public function that takes care of making a backup
         """
+        pass
 
     def _get_folder_structure(self):
         return glob(pathname=self._local_folder)
