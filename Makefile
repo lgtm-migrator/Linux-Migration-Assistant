@@ -16,3 +16,6 @@ codestyle:
 
 run_unittests:
 	sudo su -c "python3 -m pip install -r requirements/test.txt && cd src && coverage run -m pytest -v && coverage report"
+
+run_integrations:
+	sudo su -c "python3 -m pip install -r requirements/test.txt && cd src && coverage run -m pytest -v tests/integration && coverage report"
