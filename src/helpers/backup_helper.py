@@ -1,3 +1,5 @@
+from typing import List
+
 from backups.chunks import Chunk, Signature
 from .hash_helper import compute_md5, compute_adler32
 
@@ -22,15 +24,18 @@ def checksums_file(file_path: Path):
     return chunks
 
 
-def has_different_blocks(src, dst):
-    is_different = True
-    checksum_file_two = checksums_file(dst)
+def get_different_blocks(src: str, dst: str) -> List[int]:
+    checksum_src = checksums_file(file_path=src)
+    checksum_dst = checksums_file(file_path=dst)
+    different_blocks = []
     with open(src) as f:
         while True:
             chunk = f.read(BLOCK_SIZE)
             if not chunk:
                 break
 
-            if checksum_file_two.get_chunk(chunk=chunk) is None:
-                return is_different
-    return not is_different
+            chunk_block = checksum_dst.get_chunk(chunk=chunk)
+            if chunk_block is None:
+                different_blocks.append(checksum_src.get_chunk(chunk=chunk))
+
+    return different_blocks
