@@ -2,4 +2,4 @@
 black
 pylint
 pytest
-PyGObject==3.34.0
+PyGObject==3.36.1
