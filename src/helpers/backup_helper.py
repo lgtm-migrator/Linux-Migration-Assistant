@@ -1,7 +1,7 @@
 from typing import List
 
 from backups.chunks import Chunk, Signature
-from .hash_helper import compute_md5, compute_adler32
+from .hash_helper import compute_adler32
 
 from pathlib import Path
 
@@ -18,7 +18,6 @@ def checksums_file(file_path: Path):
             chunks.append(
                 Signature(
                     adler32=compute_adler32(chunk),
-                    md5=compute_md5(chunk),
                 )
             )
     return chunks

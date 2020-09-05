@@ -1,9 +1,4 @@
-from hashlib import md5
 from zlib import adler32
-
-
-def compute_md5(chunk):
-    return md5(str_to_bytes(chunk)).hexdigest()
 
 
 def compute_adler32(chunk):
