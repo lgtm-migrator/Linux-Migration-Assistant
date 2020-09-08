@@ -24,6 +24,10 @@ jobs:
     - name: Lint with flake8
       run: |
         make codestyle
-    - name: Test with pytest
+    - name: Run Unit Tests
       run: |
         make run_unittests
+    - name: Run Integration Tests
+      run: |
+        make run_integrations
+

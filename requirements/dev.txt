@@ -1,5 +1,6 @@
 -r common.txt
 black
+vulture
 pylint
 pytest
 PyGObject==3.36.1
