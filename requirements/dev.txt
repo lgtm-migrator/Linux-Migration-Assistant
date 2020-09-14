@@ -3,4 +3,4 @@ black
 vulture
 pylint
 pytest
-PyGObject==3.36.1
+PyGObject==3.38.0
